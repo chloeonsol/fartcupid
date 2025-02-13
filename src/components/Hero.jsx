@@ -71,10 +71,10 @@ const Hero = () => {
         </div>
 
         <div className={isMobile ? "social-buttons-container-mobile" : "social-buttons-container"}>
-          <a href="https://t.me/chloeofficalportal" target="_blank" rel="noopener noreferrer">
+          <a href="https://t.me/fartcupidsol" target="_blank" rel="noopener noreferrer">
             <button className="social-button" style={{ backgroundImage: 'url(/tg.avif)' }}></button>
           </a>
-          <a href="https://x.com/buychloecto" target="_blank" rel="noopener noreferrer">
+          <a href="https://x.com/fartcupidsol" target="_blank" rel="noopener noreferrer">
             <button className="social-button" style={{ backgroundImage: 'url(/X.jpg)' }}></button>
           </a>
           <a href="https://jup.ag/swap/SOL-7DdHyxLZQuudndfrX3ZDDqgK6zPFbm17wGwKJqgjpump" target="_blank" rel="noopener noreferrer">
