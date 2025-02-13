@@ -1,0 +1,281 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden; /* Evita el scroll lateral */
+}
+
+.hero-container {
+  background-image: url('/background1.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100vw; /* Asegura que cubra toda la pantalla */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 20px;
+  position: relative;
+  overflow: hidden; /* Evita que elementos dentro puedan causar scroll */
+}
+
+@font-face {
+    font-family: 'Bubble';
+    src: url('../fonts/bubble.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  .hero-container {
+    background-image: url('/background1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+    width: 100%;
+    position: relative;
+}
+
+  
+.hero-content {
+  max-width: 1200px;
+  width: 100%;
+  text-align: center;
+}
+
+  
+.hero-title {
+  font-family: 'Bubble', cursive;
+  font-size: 100px;
+  text-transform: uppercase;
+  color: #FF6B81;
+  text-shadow: 
+      4px 4px 6px rgba(255, 99, 132, 0.7),
+      -4px -4px 6px rgba(255, 99, 132, 0.7),
+      0px 0px 10px rgba(255, 77, 109, 0.6),
+      0px 0px 20px rgba(255, 99, 132, 0.4);
+  margin: 20px 0;
+  position: relative;
+}
+@keyframes heartbeat {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+.cora-image {
+  position: absolute;
+  bottom: 15%;
+  left: 20%;
+  width: 20%;
+  height: auto;
+  animation: heartbeat 1.5s infinite;
+}
+    /* Animación para el efecto flotante de la imagen */
+    @keyframes floatAnimation {
+      0% {
+        transform: translateY(30px); /* Posición inicial */
+      }
+      50% {
+        transform: translateY(5px); /* Mueve hacia arriba */
+      }
+      100% {
+        transform: translateY(30px); /* Vuelve a la posición original */
+      }
+    }
+  .hero-text {
+    font-size: 35px;
+    font-family: 'Bubble', cursive;
+    font-weight: bold;
+    color: #F36A6A; /* Rosa salmón */
+    text-shadow: 2px 2px 4px rgba(255, 77, 109, 0.7);
+    margin-bottom: 20px;
+}
+  
+  .white-text {
+    color: white;
+    text-shadow: 
+      2px 2px 4px rgba(0, 0, 0, 0.7); /* Sombra para la parte blanca */
+    padding: 5px;
+    margin-right: 5px;
+    border-radius: 5px;
+  }
+  
+  .purple-text {
+    color: #FA728C; /* Color morado */
+    text-shadow: 
+      2px 2px 4px rgba(0, 0, 0, 0.7); /* Sombra para la parte morada */
+    padding: 5px;
+    margin-left: 5px;
+    border-radius: 5px;
+  }
+ /* Hero Button - Dirección y Copiar */
+ .address-button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centramos */
+  margin: 20px 0;
+}
+  
+.address-button {
+  background: linear-gradient(145deg, #FFA6B8, #FF7B92);
+  color: white;
+  font-family: 'Bubble', cursive;
+  font-size: 18px;
+  font-weight: bold;
+  border: 3px solid #B80040;
+  border-radius: 30px;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+  
+  .address-text {
+    margin-right: 10px; /* Espacio entre la dirección y el botón */
+    font-weight: bold; /* Negrita para el texto "CA:" */
+    color: black; /* Texto "CA:" en negro */
+  }
+  
+  /* Botón Copy - solo efecto hover en el texto */
+  .copy-button {
+    background: #B80040;
+    color: white;
+    font-size: 18px;
+    border-radius: 30px;
+    padding: 8px 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+  
+  /* Efecto hover solo para el botón Copy */
+  .copy-button:hover {
+    background-color: #FF7B92; /* Rosa pastel en hover */
+}
+  /* Icono de check que aparece con el texto COPIED */
+  .check-icon {
+    color: green;
+    margin-left: 10px;
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.3s ease;
+  }
+  
+  /* Animación para el texto de "COPIED!" y el check icon */
+  .copy-button.copied .check-icon {
+    opacity: 1;
+    transform: scale(1);
+    animation: checkAnimation 0.3s ease-out forwards;
+  }
+  
+  .copy-button:focus {
+    outline: none;
+  }
+  
+  /* Animación del check icon */
+  @keyframes checkAnimation {
+    0% {
+      transform: scale(0);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+ /* Contenedor para los 5 botones sociales */
+ .social-buttons-container {
+  display: flex;
+  justify-content: center; /* Centramos */
+  gap: 20px;
+  margin-top: 30px;
+}
+  
+  /* Estilo de los botones sociales */
+  .social-button {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.3s ease;
+    background-color: #FF6F91;
+    border: 3px solid #B80040;
+    cursor: pointer;
+}
+  
+  /* Efecto hover solo para el botón Copy */
+  .social-button:hover {
+    transform: scale(1.2);
+    background-color: #FFA6B8; /* Cambia a un tono más pastel en hover */
+}
+
+  
+  .social-button:focus {
+    outline: none;
+  }
+  
+  /* Especificamos las imágenes para cada botón social */
+  .social-button:nth-child(1) {
+    background-image: url('/tg.avif'); /* Primer botón: Telegram */
+  }
+  
+  .social-button:nth-child(2) {
+    background-image: url('/X.jpg'); /* Segundo botón: X */
+  }
+  
+  .social-button:nth-child(3) {
+    background-image: url('/jup.webp'); /* Tercer botón: Jup */
+  }
+  
+  .social-button:nth-child(4) {
+    background-image: url('/dexs.png'); /* Cuarto botón: Dexs (png) */
+  }
+  
+  .social-button:nth-child(5) {
+    background-image: url('/dexs.avif'); /* Quinto botón: Dexs (avif) */
+  }
+  
+
+  @keyframes floatAnimation {
+    0% {
+      transform: translateY(10px) rotate(-155deg);
+    }
+    50% {
+      transform: translateY(-10px) rotate(-155deg);
+    }
+    100% {
+      transform: translateY(10px) rotate(-155deg);
+    }
+  }
+  
+  .logo2-image {
+      position: absolute;
+      width: 15%;
+      height: auto;
+      cursor: pointer;
+      animation: floatAnimation 3s ease-in-out infinite;
+      transform-origin: center;
+      transition: transform 1s ease-in-out, top 1s ease-in-out, left 1s ease-in-out;
+  }
+  
+  @keyframes vibrate {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-2px); }
+      50% { transform: translateX(2px); }
+      75% { transform: translateX(-2px); }
+      100% { transform: translateX(0); }
+  }
+  
+  .logo2-image.vibrating {
+      animation: vibrate 0.3s ease-in-out;
+  }
+  
