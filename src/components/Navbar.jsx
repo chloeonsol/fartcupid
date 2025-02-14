@@ -9,11 +9,26 @@ export default function Navbar() {
           <img src="/logotop.png" alt="Logo" />
         </a>
 
-        {/* Iconos y botón BUY a la derecha */}
+        {/* Botón BUY a la izquierda */}
+        
+
+        {/* Iconos a la derecha */}
         <div className="navbar-right">
-          <a href="https://www.jup.ag/" target="_blank" rel="noopener noreferrer" className="btn-buy">
-            BUY
+          <a href="https://t.me/yourtelegram" target="_blank" rel="noopener noreferrer" className="social-button">
+            <img src="/icons/telegram.svg" alt="" />
           </a>
+          <a href="https://x.com/yourprofile" target="_blank" rel="noopener noreferrer" className="social-button">
+            <img src="/icons/x.svg" alt="" />
+          </a>
+          <a href="https://dexscreener.com/" target="_blank" rel="noopener noreferrer" className="social-button">
+            <img src="/icons/dexscreener.svg" alt="" />
+          </a>
+          <a href="https://www.dextools.io/" target="_blank" rel="noopener noreferrer" className="social-button">
+            <img src="/icons/dextools.svg" alt="" />
+          </a>
+          <a href="https://www.jup.ag/" target="_blank" rel="noopener noreferrer" className="btn-buy">
+          BUY
+        </a>
         </div>
       </div>
     </nav>

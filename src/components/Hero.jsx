@@ -34,7 +34,7 @@ const Hero = () => {
   }, []);
 
   const copyToClipboard = () => {
-    const address = '7DdHyxLZQuudndfrX3ZDDqgK6zPFbm17wGwKJqgjpump';
+    const address = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX';
     navigator.clipboard.writeText(address).then(() => {
       setIsCopied(true);
       setTimeout(() => setIsCopied(false), 3000);
@@ -95,7 +95,7 @@ const Hero = () => {
         </p>
 
         {/* 🔥 Contador de Pedos en Tiempo Real */}
-        <h2 className="fart-counter">Total Pedos: {fartCount}</h2>
+        <h2 className="fart-counter">Total Farts: {fartCount}</h2>
 
         <div className={isMobile ? "address-button-container-mobile" : "address-button-container"}>
           <button className={isMobile ? "address-button-mobile" : "address-button"}>
