@@ -179,6 +179,9 @@ html, body {
   animation: floatAnimation 3s ease-in-out infinite;
   transform-origin: center;
   transition: transform 1s ease-in-out, top 1s ease-in-out, left 1s ease-in-out;
+  user-select: none;
+  -webkit-user-drag: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* Vibración */
