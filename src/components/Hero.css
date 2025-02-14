@@ -51,6 +51,18 @@ html, body {
 }
 
   
+@keyframes titleFloat {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
 .hero-title {
   font-family: 'Bubble', cursive;
   font-size: 100px;
@@ -63,7 +75,9 @@ html, body {
       0px 0px 20px rgba(255, 99, 132, 0.4);
   margin: 20px 0;
   position: relative;
+  animation: titleFloat 3s ease-in-out infinite; /* 🚀 Añadimos la animación */
 }
+
 @keyframes heartbeat {
   0% { transform: scale(1); }
   50% { transform: scale(1.1); }
@@ -278,4 +292,65 @@ html, body {
   .logo2-image.vibrating {
       animation: vibrate 0.3s ease-in-out;
   }
-  
+  /* 💨 Efecto de gas metano mejorado */
+@keyframes gasAnimation {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) translateY(10px) rotate(0deg);
+    filter: blur(2px);
+  }
+  30% {
+    opacity: 1;
+    transform: scale(1.2) translateY(-5px) rotate(15deg);
+    filter: blur(4px);
+  }
+  70% {
+    opacity: 0.8;
+    transform: scale(1.8) translateY(-30px) rotate(-10deg);
+    filter: blur(6px);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(2.5) translateY(-50px) rotate(20deg);
+    filter: blur(10px);
+  }
+}
+
+.gas-effect {
+  position: absolute;
+  width: 50px; /* Tamaño más grande */
+  height: 80px;
+  background: radial-gradient(circle, rgba(60, 255, 60, 0.8) 15%, rgba(0, 255, 0, 0) 90%);
+  border-radius: 20%;
+  opacity: 0;
+  pointer-events: none;
+  animation: gasAnimation 2s ease-out;
+  mix-blend-mode: lighten; /* Hace que el gas se fusione mejor con el fondo */
+}
+
+/* 🎇 Para que el gas tenga múltiples capas y colores */
+.gas-effect::before,
+.gas-effect::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(144, 255, 144, 0.6) 20%, rgba(0, 255, 0, 0) 100%);
+  border-radius: 10%;
+  opacity: 0.7;
+  animation: gasAnimation 1.5s ease-out;
+  filter: blur(5px);
+}
+.fart-counter {
+  font-size: 24px;
+  font-family: 'Bubble', cursive;
+  color: #db30b6;
+  text-shadow: 2px 2px 6px rgba(253, 29, 186, 0.7);
+  margin-top: 20px;
+  animation: bounce 1.5s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}

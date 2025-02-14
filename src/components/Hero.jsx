@@ -2,14 +2,36 @@ import chloeImage from '/logo.png';
 import './Hero.css';
 import './HeroMobile.css';
 import { useState, useEffect } from 'react';
+import { db, ref, onValue, runTransaction } from '../firebaseConfig';
 
 const Hero = () => {
   const [isCopied, setIsCopied] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isVibrating, setIsVibrating] = useState(false);
   const [logoPosition, setLogoPosition] = useState({ top: '10px', left: '23%' });
+  const [gasArray, setGasArray] = useState([]);
+  const [fartCount, setFartCount] = useState(0);
 
   const sounds = ['/fart1.wav', '/fart2.wav', '/fart3.wav'];
+
+  useEffect(() => {
+    // 🔥 Obtener el contador de Firebase en tiempo real
+    const fartRef = ref(db, 'farts');
+    onValue(fartRef, (snapshot) => {
+      const data = snapshot.val();
+      if (data !== null) {
+        setFartCount(data);
+      }
+    });
+
+    // Detectar si es móvil
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const copyToClipboard = () => {
     const address = '7DdHyxLZQuudndfrX3ZDDqgK6zPFbm17wGwKJqgjpump';
@@ -19,7 +41,7 @@ const Hero = () => {
     });
   };
 
-  const handleLogoClick = () => {
+  const handleLogoClick = (event) => {
     const randomSound = sounds[Math.floor(Math.random() * sounds.length)];
     const audio = new Audio(randomSound);
     audio.play();
@@ -27,24 +49,41 @@ const Hero = () => {
     setIsVibrating(true);
     setTimeout(() => setIsVibrating(false), 300);
 
-    // Movimiento aleatorio dentro de la pantalla
-    const maxX = window.innerWidth - 150; // Ajuste para evitar que se salga de la pantalla
-    const maxY = window.innerHeight - 150;
+    // 🔥 ACTUALIZAR EL CONTADOR EN FIREBASE
+    const fartRef = ref(db, 'farts');
+    runTransaction(fartRef, (currentValue) => {
+      return (currentValue || 0) + 1;  // Si es null, empieza en 0 y suma 1
+    }).then(() => {
+      console.log("🔥 Contador actualizado en Firebase");
+    }).catch((error) => {
+      console.error("❌ Error actualizando contador:", error);
+    });
 
+    // Movimiento aleatorio dentro de la pantalla
+    const maxX = window.innerWidth - 150;
+    const maxY = window.innerHeight - 150;
     const randomX = Math.random() * maxX;
     const randomY = Math.random() * maxY;
-
     setLogoPosition({ top: `${randomY}px`, left: `${randomX}px` });
-  };
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
+    // Generar gas
+    const logo = event.target;
+    const rect = logo.getBoundingClientRect();
+    const gasX = rect.left + rect.width / 2;
+    const gasY = rect.top + rect.height - 10;
+
+    const newGas = {
+      id: Date.now(),
+      left: `${gasX}px`,
+      top: `${gasY}px`
     };
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+
+    setGasArray((prevGas) => [...prevGas, newGas]);
+
+    setTimeout(() => {
+      setGasArray((prevGas) => prevGas.filter((g) => g.id !== newGas.id));
+    }, 1000);
+  };
 
   return (
     <div id="hero" className={isMobile ? "hero-container-mobile-version" : "hero-container"}>
@@ -55,9 +94,12 @@ const Hero = () => {
           <span className="purple-text">Literally!💘💨</span>
         </p>
 
+        {/* 🔥 Contador de Pedos en Tiempo Real */}
+        <h2 className="fart-counter">Total Pedos: {fartCount}</h2>
+
         <div className={isMobile ? "address-button-container-mobile" : "address-button-container"}>
           <button className={isMobile ? "address-button-mobile" : "address-button"}>
-            <span className="address-text">CA: 7DdHy...pump</span>
+            <span className="address-text">CA: XXXX...pump</span>
             <button className={`copy-button ${isCopied ? 'copied' : ''}`} onClick={copyToClipboard}>
               {isCopied ? (
                 <span>
@@ -70,35 +112,23 @@ const Hero = () => {
           </button>
         </div>
 
-        <div className={isMobile ? "social-buttons-container-mobile" : "social-buttons-container"}>
-          <a href="https://t.me/fartcupidsol" target="_blank" rel="noopener noreferrer">
-            <button className="social-button" style={{ backgroundImage: 'url(/tg.avif)' }}></button>
-          </a>
-          <a href="https://x.com/fartcupidsol" target="_blank" rel="noopener noreferrer">
-            <button className="social-button" style={{ backgroundImage: 'url(/X.jpg)' }}></button>
-          </a>
-          <a href="https://jup.ag/swap/SOL-7DdHyxLZQuudndfrX3ZDDqgK6zPFbm17wGwKJqgjpump" target="_blank" rel="noopener noreferrer">
-            <button className="social-button" style={{ backgroundImage: 'url(/jup.webp)' }}></button>
-          </a>
-          <a href="https://dexscreener.com/solana/bsabartbatkx4npxhttc7h6dvl4e8phm4xcakbopzcy2" target="_blank" rel="noopener noreferrer">
-            <button className="social-button" style={{ backgroundImage: 'url(/dexs.png)' }}></button>
-          </a>
-          <a href="https://www.dextools.io/app/es/solana/pair-explorer/BsAbARTbAtkx4nPxHttc7H6dvL4e8Phm4xCAkBopzcY2?t=1739275108537" target="_blank" rel="noopener noreferrer">
-            <button className="social-button" style={{ backgroundImage: 'url(/dexs.avif)' }}></button>
-          </a>
-        </div>
-
-        {/* Imagen Cora */}
-        <img src="/cora.png" alt="Cora" className="cora-image" />
-
-        {/* Imagen Logo2 */}
+        {/* Imagen Cupido con contador de pedos */}
         <img 
           src="/logo2.gif" 
-          alt="Logo2" 
+          alt="Cupido" 
           className={`logo2-image ${isVibrating ? 'vibrating' : ''}`} 
           onClick={handleLogoClick} 
           style={{ top: logoPosition.top, left: logoPosition.left }}
         />
+
+        {/* Gases de Cupido */}
+        {gasArray.map((gas) => (
+          <div
+            key={gas.id}
+            className="gas-effect"
+            style={{ left: gas.left, top: gas.top }}
+          />
+        ))}
       </div>
     </div>
   );
