@@ -34,7 +34,7 @@ const Hero = () => {
   }, []);
 
   const copyToClipboard = () => {
-    const address = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX';
+    const address = '6D6hWRumqdRA4oeFUj2zaybTSpDqtrKuTjZXoqCbpump';
     navigator.clipboard.writeText(address).then(() => {
       setIsCopied(true);
       setTimeout(() => setIsCopied(false), 3000);
@@ -99,7 +99,7 @@ const Hero = () => {
 
         <div className={isMobile ? "address-button-container-mobile" : "address-button-container"}>
           <button className={isMobile ? "address-button-mobile" : "address-button"}>
-            <span className="address-text">CA: XXXX...pump</span>
+            <span className="address-text">CA: 6D6hW...pump</span>
             <button className={`copy-button ${isCopied ? 'copied' : ''}`} onClick={copyToClipboard}>
               {isCopied ? (
                 <span>
