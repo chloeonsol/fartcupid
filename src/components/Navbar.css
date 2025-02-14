@@ -108,14 +108,13 @@
   box-shadow: 0px 4px 10px rgba(255, 77, 109, 0.5);
 }
 
-/* ======= RESPONSIVE ======= */
-@media (max-width: 768px) {
-  .navbar-container {
-    padding: 0 15px;
-  }
+//* ======= RESPONSIVE ======= */
 
-  .navbar-icons {
-    gap: 10px;
+/* Tablet grande (hasta 1024px) */
+@media (max-width: 1024px) {
+  .navbar-container {
+    max-width: 950px;
+    padding: 0 15px;
   }
 
   .navbar-icons img,
@@ -125,18 +124,20 @@
   }
 
   .btn-buy {
-    padding: 8px 20px;
+    padding: 8px 18px;
     font-size: 14px;
   }
 }
 
-@media (max-width: 480px) {
-  .navbar {
-    padding: 10px;
+/* Tablet pequeña y móviles grandes (hasta 768px) */
+@media (max-width: 768px) {
+  .navbar-container {
+    max-width: 720px;
+    padding: 0 10px;
   }
 
-  .navbar-logo img {
-    height: 40px;
+  .navbar-icons {
+    gap: 6px;
   }
 
   .navbar-icons img,
@@ -146,7 +147,108 @@
   }
 
   .btn-buy {
-    padding: 6px 15px;
+    padding: 6px 14px;
     font-size: 12px;
+  }
+}
+
+/* Móviles medianos y pequeños (hasta 600px) */
+@media (max-width: 600px) {
+  .navbar {
+    padding: 6px;
+  }
+
+  .navbar-container {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 8px;
+  }
+
+  .navbar-logo img {
+    height: 28px;
+  }
+
+  .navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .navbar-icons {
+    display: flex;
+    gap: 4px;
+  }
+
+  .navbar-icons img {
+    height: 25px;
+    width: 25px;
+  }
+
+  .btn-buy {
+    height: 26px;
+    width: auto;
+    padding: 4px 10px;
+    font-size: 10px;
+    white-space: nowrap; /* Evita que el texto se desborde */
+  }
+}
+
+/* Móviles muy pequeños (hasta 480px) */
+@media (max-width: 480px) {
+  .navbar {
+    padding: 5px;
+  }
+
+  .navbar-container {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5px;
+  }
+
+  .navbar-logo img {
+    height: 25px;
+  }
+
+  .navbar-right {
+    gap: 3px;
+  }
+
+  .navbar-icons {
+    gap: 3px;
+  }
+
+  .navbar-icons img {
+    height: 15px;
+    width: 15px;
+  }
+
+  .btn-buy {
+    height: 30px;
+    padding: 3px 8px;
+    font-size: 9px;
+  }
+}
+
+/* Móviles ultra pequeños (hasta 360px) */
+@media (max-width: 360px) {
+  .navbar {
+    padding: 4px;
+  }
+
+  .navbar-logo img {
+    height: 22px;
+  }
+
+  .navbar-icons img {
+    height: 10px;
+    width: 10px;
+  }
+
+  .btn-buy {
+    height: 25px;
+    padding: 3px 6px;
+    font-size: 8px;
   }
 }
